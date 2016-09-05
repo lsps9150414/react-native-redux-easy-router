@@ -6,7 +6,6 @@ import {
 } from 'react-native';
 
 import TabIcon from './TabIcon';
-import { distance } from '../../../constants/layout.common';
 
 export default class TabCardStack extends React.Component {
   handleTabSelection = tabIndex => {
@@ -47,7 +46,7 @@ export default class TabCardStack extends React.Component {
             borderTopWidth: 0.5,
             borderColor: 'gray',
             bottom: 0, left: 0, right: 0,
-            height: distance.NAV_BAR_HEIGHT,
+            height: 60,
           }}
         >
           {this.renderTabIcons(tabIcons, tabKeys)}
