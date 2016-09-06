@@ -20,10 +20,7 @@ export const switchPropTypes = {
 };
 
 export const routingTargetPropTypes = {
-  routeKey: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]).isRequired,
+  routeKey: PropTypes.string.isRequired,
   component: PropTypes.func.isRequired,
   navigate: PropTypes.object,
   // For StackRouter

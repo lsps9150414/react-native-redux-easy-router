@@ -6,23 +6,25 @@ const { StateUtils } = NavigationExperimental;
 
 export const createNavigationReducer = initialState => handleActions(
   {
+    [NAVIGATION_ACTIONS.RESET]: (state, action) => ({
+      ...state,
+      [action.targetRouterKey]: initialState[action.targetRouterKey],
+    }),
     [NAVIGATION_ACTIONS.POP]: (state, action) => ({
       ...state,
-      ...{ [action.targetRouterKey]: StateUtils.pop(state[action.targetRouterKey]) },
+      [action.targetRouterKey]: StateUtils.pop(state[action.targetRouterKey]),
     }),
     [NAVIGATION_ACTIONS.PUSH]: (state, action) => ({
       ...state,
-      ...{ [action.targetRouterKey]: StateUtils.push(state[action.targetRouterKey], action.route) },
+      [action.targetRouterKey]: StateUtils.push(state[action.targetRouterKey], action.route),
     }),
     [NAVIGATION_ACTIONS.REPLACE]: (state, action) => ({
       ...state,
-      ...{
-        [action.targetRouterKey]: StateUtils.replaceAt(
-          state[action.targetRouterKey],
-          action.key,
-          action.route
-        ),
-      },
+      [action.targetRouterKey]: StateUtils.replaceAt(
+        state[action.targetRouterKey],
+        action.key,
+        action.route
+      ),
     }),
     [NAVIGATION_ACTIONS.SELECT_TAB]: (state, action) => ({
       ...state,

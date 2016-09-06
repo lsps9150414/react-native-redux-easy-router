@@ -1,4 +1,5 @@
 export const NAVIGATION_ACTIONS = {
+  RESET: 'RESET',
   POP: 'POP',
   PUSH: 'PUSH',
   REPLACE: 'REPLACE',
@@ -23,6 +24,9 @@ export const connectStore = (store) => {
 };
 
 export const navigate = {
+  reset: (targetRouterKey) => {
+    reduxStore.dispatch(handleNavigation(NAVIGATION_ACTIONS.RESET, targetRouterKey));
+  },
   pop: (targetRouterKey) => {
     reduxStore.dispatch(handleNavigation(NAVIGATION_ACTIONS.POP, targetRouterKey));
   },
