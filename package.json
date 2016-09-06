@@ -1,6 +1,6 @@
 {
   "name": "react-native-redux-easy-router",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "React Native Router based on new React Native Navigation API and Redux",
   "main": "index.js",
   "scripts": {
