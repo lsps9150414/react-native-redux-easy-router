@@ -20,7 +20,6 @@ let reduxStore = null;
 
 export const connectStore = (store) => {
   reduxStore = store;
-  console.log(reduxStore);
 };
 
 export const navigate = {
