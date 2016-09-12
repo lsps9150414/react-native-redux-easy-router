@@ -7,7 +7,7 @@ import {
   NavigationExperimental,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { navigate } from 'actions';
+import { navigate } from '../actions';
 
 import ErrorScene from '../components/ErrorScene';
 import { routerPropTypes, routingTargetPropTypes } from '../propTypes';
