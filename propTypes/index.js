@@ -5,7 +5,6 @@ const basicRouterPropTypes = {
   children: PropTypes.node.isRequired,
   hideNavBar: PropTypes.bool,
   hideTabBar: PropTypes.bool,
-  handleNavigation: PropTypes.func.isRequired,
 };
 
 export const routerPropTypes = {
