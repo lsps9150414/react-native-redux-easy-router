@@ -7,6 +7,7 @@ import {
   NavigationExperimental,
 } from 'react-native';
 import { connect } from 'react-redux';
+import { navigate } from 'actions';
 
 import ErrorScene from '../components/ErrorScene';
 import { routerPropTypes, routingTargetPropTypes } from '../propTypes';
@@ -30,7 +31,7 @@ class StackRouter extends React.Component {
   }
 
   back = () => {
-    this.navigate.pop(this.props.navStateName);
+    navigate.pop(this.props.navStateName);
   }
   renderSideComponent = (side, sceneProps) => {
     if (side !== 'left' && side !== 'right') {
