@@ -1,4 +1,4 @@
-const NAVIGATION_ACTIONS = {
+export const NAVIGATION_ACTIONS = {
   RESET: 'RESET',
   POP: 'POP',
   PUSH: 'PUSH',
