@@ -9,7 +9,6 @@ import {
 import { connect } from 'react-redux';
 
 import ErrorScene from '../components/ErrorScene';
-import { NAVIGATION_ACTIONS, handleNavigation } from '../actions';
 import { routerPropTypes, routingTargetPropTypes } from '../propTypes';
 
 const {
@@ -28,24 +27,6 @@ class StackRouter extends React.Component {
       routingTargetKey === `scene_${this.props.children.props.routeKey}` ?
         this.props.children : null
     );
-  }
-
-  // TODO: Modularize this.
-  navigate = {
-    pop: (targetRouterKey) => {
-      this.props.handleNavigation(NAVIGATION_ACTIONS.POP, targetRouterKey);
-    },
-    push: (targetRouterKey, route) => {
-      this.props.handleNavigation(NAVIGATION_ACTIONS.PUSH, targetRouterKey, route);
-    },
-    replace: (targetRouterKey, route, key) => {
-      this.props.handleNavigation(NAVIGATION_ACTIONS.REPLACE, targetRouterKey, route, key);
-    },
-    selectTab: (targetRouterKey, index = 0) => {
-      this.props.handleNavigation(
-        NAVIGATION_ACTIONS.SELECT_TAB, targetRouterKey, null, null, index
-      );
-    },
   }
 
   back = () => {
@@ -135,7 +116,6 @@ class StackRouter extends React.Component {
     const propsToPass = {
       ...routingTargetCarrier.props,
       ...sceneProps.scene.route.props,
-      navigate: this.navigate,
     };
     const Container = routingTargetCarrier.props.container;
     const Component = routingTargetCarrier.props.component;
@@ -172,10 +152,7 @@ const mapStateToProps = (state, props) => ({
   navigationState: state.navigation[props.navStateName],
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  handleNavigation: (navAction, targetRouterKey, route, key, index) => {
-    dispatch(handleNavigation(navAction, targetRouterKey, route, key, index));
-  },
+const mapDispatchToProps = (/*dispatch*/) => ({
 });
 
 const StackRouterContainer = connect(

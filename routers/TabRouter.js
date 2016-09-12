@@ -4,7 +4,6 @@ import React, {
 import { connect } from 'react-redux';
 
 import TabCardStack from '../components/tab/TabCardStack';
-import { handleNavigation, NAVIGATION_ACTIONS } from '../actions';
 import { routerPropTypes, routingTargetPropTypes } from '../propTypes';
 
 class TabRouter extends React.Component {
@@ -38,29 +37,10 @@ class TabRouter extends React.Component {
     return this.props.children;
   }
 
-  // TODO: Modularize this.
-  navigate = {
-    pop: (targetRouterKey) => {
-      this.props.handleNavigation(NAVIGATION_ACTIONS.POP, targetRouterKey);
-    },
-    push: (targetRouterKey, route) => {
-      this.props.handleNavigation(NAVIGATION_ACTIONS.PUSH, targetRouterKey, route);
-    },
-    replace: (targetRouterKey, route, key) => {
-      this.props.handleNavigation(NAVIGATION_ACTIONS.REPLACE, targetRouterKey, route, key);
-    },
-    selectTab: (targetRouterKey, index = 0) => {
-      this.props.handleNavigation(
-        NAVIGATION_ACTIONS.SELECT_TAB, targetRouterKey, null, null, index
-      );
-    },
-  }
-
   renderRoutingTarget = navigationState => {
     const routingTargetCarrier = this.getRoutingTargetCarrier(navigationState.index);
     const propsToPass = {
       ...routingTargetCarrier.props,
-      navigate: this.navigate,
     };
     const Container = routingTargetCarrier.props.container;
     const Component = routingTargetCarrier.props.component;
@@ -79,7 +59,6 @@ class TabRouter extends React.Component {
         renderScene={this.renderRoutingTarget}
         getTabProps={this.getTabProps}
         getTabSelectionHandlers={this.getTabSelectionHandlers}
-        navigate={this.navigate}
       />
     );
   }
@@ -96,10 +75,7 @@ const mapStateToProps = (state, props) => ({
   navigationState: state.navigation[props.navStateName],
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  handleNavigation: (navAction, targetRouter, route, key, index) => {
-    dispatch(handleNavigation(navAction, targetRouter, route, key, index));
-  },
+const mapDispatchToProps = (/*dispatch*/) => ({
 });
 
 const TabRouterContainer = connect(

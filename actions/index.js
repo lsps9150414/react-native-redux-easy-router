@@ -1,4 +1,4 @@
-export const NAVIGATION_ACTIONS = {
+const NAVIGATION_ACTIONS = {
   RESET: 'RESET',
   POP: 'POP',
   PUSH: 'PUSH',
@@ -6,7 +6,7 @@ export const NAVIGATION_ACTIONS = {
   SELECT_TAB: 'SELECT_TAB',
 };
 
-export const handleNavigation = (
+const handleNavigation = (
   navAction, targetRouterKey, route = null, key = null, index = null
 ) => ({
   type: navAction,

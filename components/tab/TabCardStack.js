@@ -6,11 +6,12 @@ import {
 } from 'react-native';
 
 import TabIcon from './TabIcon';
+import { navigate } from '../../actions';
 
 export default class TabCardStack extends React.Component {
   handleTabSelection = tabIndex => {
     const focusSelectedTab = () => {
-      this.props.navigate.selectTab(this.props.navStateName, tabIndex);
+      navigate.selectTab(this.props.navStateName, tabIndex);
     };
     const tabSelectionHandlers = this.props.getTabSelectionHandlers();
     if (tabSelectionHandlers[tabIndex]) {
@@ -57,7 +58,6 @@ export default class TabCardStack extends React.Component {
 }
 
 TabCardStack.propTypes = {
-  navigate: PropTypes.object.isRequired,
   navigationState: PropTypes.object.isRequired,
   navStateName: PropTypes.string.isRequired,
   renderScene: PropTypes.func.isRequired,
