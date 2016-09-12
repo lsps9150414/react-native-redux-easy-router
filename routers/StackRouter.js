@@ -108,7 +108,7 @@ class StackRouter extends React.Component {
     );
   }
 
-  renderRoutingTarget = sceneProps => {
+  renderScene = sceneProps => {
     const sceneKey = sceneProps.scene.key;
     const routingTargetCarrier = this.getRoutingTargetCarrier(sceneKey);
     if (!routingTargetCarrier) {
@@ -131,7 +131,7 @@ class StackRouter extends React.Component {
     return (
       <NavigationCardStack
         navigationState={this.props.navigationState}
-        renderScene={this.renderRoutingTarget}
+        renderScene={this.renderScene}
         renderOverlay={this.renderOverlay}
         direction={this.props.direction}
       />

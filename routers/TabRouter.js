@@ -37,7 +37,7 @@ class TabRouter extends React.Component {
     return this.props.children;
   }
 
-  renderRoutingTarget = navigationState => {
+  renderScene = navigationState => {
     const routingTargetCarrier = this.getRoutingTargetCarrier(navigationState.index);
     const propsToPass = {
       ...routingTargetCarrier.props,
@@ -56,7 +56,7 @@ class TabRouter extends React.Component {
       <TabCardStack
         navStateName={this.props.navStateName}
         navigationState={this.props.navigationState}
-        renderScene={this.renderRoutingTarget}
+        renderScene={this.renderScene}
         getTabProps={this.getTabProps}
         getTabSelectionHandlers={this.getTabSelectionHandlers}
       />
