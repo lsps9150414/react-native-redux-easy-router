@@ -4,7 +4,7 @@ import React, {
 import { connect } from 'react-redux';
 
 import ErrorScene from '../components/ErrorScene';
-import { switchPropTypes, routingTargetPropTypes } from '../propTypes';
+import { switchRouterPropTypes, routingTargetPropTypes } from '../propTypes';
 
 class Switch extends React.Component {
   getSwitchingTargetCarrier = switchingKey => {
@@ -37,7 +37,7 @@ class Switch extends React.Component {
 }
 
 Switch.propTypes = {
-  ...switchPropTypes,
+  ...switchRouterPropTypes,
   ...routingTargetPropTypes,
 };
 
