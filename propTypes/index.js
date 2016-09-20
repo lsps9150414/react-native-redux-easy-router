@@ -21,7 +21,6 @@ export const switchPropTypes = {
 export const routingTargetPropTypes = {
   routeKey: PropTypes.string.isRequired,
   component: PropTypes.func.isRequired,
-  navigate: PropTypes.object,
   // For StackRouter
   hideParentNavBar: PropTypes.bool,
   leftComponent: PropTypes.func,
@@ -35,6 +34,6 @@ export const routingTargetPropTypes = {
   rightStyle: View.propTypes.style,
   rightTitleStyle: Text.propTypes.style,
   // For TabRouter
-  handleTabSelection: PropTypes.func,
   tabIcon: PropTypes.func,
+  handleTabSelection: PropTypes.func,
 };
