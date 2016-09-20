@@ -19,11 +19,10 @@
   ],
   "author": "lsps9150414 <philipchen.alive@gmail.com>",
   "license": "MIT",
-  "devDependencies": {
-    "eslint": "^3.5.0",
-    "eslint-config-airbnb": "^11.1.0",
-    "eslint-plugin-import": "^1.14.0",
-    "eslint-plugin-jsx-a11y": "^2.2.1",
-    "eslint-plugin-react": "^6.2.0"
-  }
+  "dependencies": {
+    "react": "^15.3.2",
+    "react-native": "^0.33.0",
+    "redux-actions": "^0.12.0"
+  },
+  "devDependencies": {}
 }
