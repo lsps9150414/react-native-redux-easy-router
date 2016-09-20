@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { navigate } from '../actions';
 
 import ErrorScene from '../components/ErrorScene';
-import { routerPropTypes, routingTargetPropTypes } from '../propTypes';
+import { stackRouterPropTypes, routingTargetPropTypes } from '../propTypes';
 
 const {
   CardStack: NavigationCardStack,
@@ -33,16 +33,17 @@ class StackRouter extends React.Component {
   back = () => {
     navigate.pop(this.props.navStateName);
   }
-  renderSideComponent = (side, sceneProps) => {
+
+  renderSideComponent = (side, sceneCarrierProps) => {
     if (side !== 'left' && side !== 'right') {
       return null;
     }
     let component = null;
-    const sideComponent = sceneProps[`${side}Component`];
-    const sideTitle = sceneProps[`${side}Title`];
-    const sideOnPress = sceneProps[`${side}OnPress`];
-    const sideStyle = sceneProps[`${side}Style`];
-    const sideTitleStyle = sceneProps[`${side}TitleStyle`];
+    const sideComponent = sceneCarrierProps[`${side}Component`];
+    const sideTitle = sceneCarrierProps[`${side}Title`];
+    const sideOnPress = sceneCarrierProps[`${side}OnPress`];
+    const sideStyle = sceneCarrierProps[`${side}Style`];
+    const sideTitleStyle = sceneCarrierProps[`${side}TitleStyle`];
 
     if (sideComponent) {
       const Component = sideComponent;
@@ -74,17 +75,32 @@ class StackRouter extends React.Component {
     }
     return component;
   }
-  renderTitleComponent = sceneProps => (
-    <NavigationHeader.Title textStyle={{ backgroundColor: 'transparent' }}>
-      {sceneProps.scene.route.title || 'Title'}
-    </NavigationHeader.Title>
-  )
+
+  renderTitleComponent = (sceneProps, sceneCarrierProps) => {
+    const title = sceneCarrierProps.title;
+    const titleStyle = sceneCarrierProps.titleStyle;
+
+    return (
+      <NavigationHeader.Title
+        textStyle={[
+          { backgroundColor: 'transparent' },
+          this.props.titleStyle,
+          titleStyle,
+        ]}
+      >
+        {title || sceneProps.scene.route.title || 'Title'}
+      </NavigationHeader.Title>
+    );
+  }
+
   renderOverlay = sceneProps => {
     const routingTargetCarrier = this.getRoutingTargetCarrier(sceneProps.scene.key);
     if (!routingTargetCarrier) {
       return (
         <NavigationHeader
+          style={this.props.navBarStyle}
           {...sceneProps}
+          renderTitleComponent={this.renderTitleComponent}
           onNavigateBack={this.back}
         />
       );
@@ -92,6 +108,9 @@ class StackRouter extends React.Component {
     if (this.props.hideNavBar) { return null; }
     // FIXME: NavBar update before scene causing glitter.
     if (routingTargetCarrier.props.hideParentNavBar) { return null; }
+
+    const renderTitleComponent =
+      () => this.renderTitleComponent(sceneProps, routingTargetCarrier.props);
     const renderRightComponent =
       () => this.renderSideComponent('right', routingTargetCarrier.props);
     const renderLeftComponent =
@@ -99,8 +118,9 @@ class StackRouter extends React.Component {
       () => this.renderSideComponent('left', routingTargetCarrier.props) : undefined;
     return (
       <NavigationHeader
+        style={this.props.navBarStyle}
         {...sceneProps}
-        renderTitleComponent={this.renderTitleComponent}
+        renderTitleComponent={renderTitleComponent}
         renderLeftComponent={renderLeftComponent}
         renderRightComponent={renderRightComponent}
         onNavigateBack={this.back}
@@ -140,7 +160,7 @@ class StackRouter extends React.Component {
 }
 
 StackRouter.propTypes = {
-  ...routerPropTypes,
+  ...stackRouterPropTypes,
   ...routingTargetPropTypes,
   direction: PropTypes.oneOf(['vertical', 'horizontal']),
 };
