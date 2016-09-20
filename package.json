@@ -23,6 +23,11 @@
     "redux-actions": "^0.12.0"
   },
   "devDependencies": {
+    "eslint": "^3.5.0",
+    "eslint-config-airbnb": "^11.1.0",
+    "eslint-plugin-import": "^1.15.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-react": "^6.3.0",
     "react": "^15.3.2",
     "react-native": "^0.33.0"
   }
