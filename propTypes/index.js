@@ -20,6 +20,11 @@ export const stackRouterPropTypes = {
   // TODO: side element styles
 };
 
+export const tabRouterPropTypes = {
+  ...basicRouterPropTypes,
+  tabBarStyle: View.propTypes.style,
+};
+
 export const switchRouterPropTypes = {
   ...basicRouterPropTypes,
   switchingKey: PropTypes.string.isRequired,

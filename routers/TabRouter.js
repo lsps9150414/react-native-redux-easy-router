@@ -3,8 +3,8 @@ import React, {
 } from 'react';
 import { connect } from 'react-redux';
 
-import TabCardStack from '../components/tab/TabCardStack';
-import { routerPropTypes, routingTargetPropTypes } from '../propTypes';
+import NavigationCardTab from '../components/tab/NavigationCardTab';
+import { tabRouterPropTypes, routingTargetPropTypes } from '../propTypes';
 
 class TabRouter extends React.Component {
   getTabProps = () => {
@@ -53,19 +53,20 @@ class TabRouter extends React.Component {
 
   render() {
     return (
-      <TabCardStack
+      <NavigationCardTab
         navStateName={this.props.navStateName}
         navigationState={this.props.navigationState}
         renderScene={this.renderScene}
         getTabProps={this.getTabProps}
         getTabSelectionHandlers={this.getTabSelectionHandlers}
+        tabBarStyle={this.props.tabBarStyle}
       />
     );
   }
 }
 
 TabRouter.propTypes = {
-  ...routerPropTypes,
+  ...tabRouterPropTypes,
   ...routingTargetPropTypes,
 };
 

@@ -3,12 +3,27 @@ import React, {
 } from 'react';
 import {
   View,
+  StyleSheet,
 } from 'react-native';
+
+const styles = StyleSheet.create({
+  tabBar: {
+    position: 'absolute',
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    borderTopWidth: 0.5,
+    borderColor: 'gray',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 60,
+  },
+});
 
 import TabIcon from './TabIcon';
 import { navigate } from '../../actions';
 
-export default class TabCardStack extends React.Component {
+export default class NavigationCardTab extends React.Component {
   handleTabSelection = tabIndex => {
     const focusSelectedTab = () => {
       navigate.selectTab(this.props.navStateName, tabIndex);
@@ -40,15 +55,10 @@ export default class TabCardStack extends React.Component {
       <View style={{ flex: 1 }}>
         {this.props.renderScene(this.props.navigationState)}
         <View
-          style={{
-            position: 'absolute',
-            flexDirection: 'row',
-            backgroundColor: 'white',
-            borderTopWidth: 0.5,
-            borderColor: 'gray',
-            bottom: 0, left: 0, right: 0,
-            height: 60,
-          }}
+          style={[
+            styles.tabBar,
+            this.props.tabBarStyle,
+          ]}
         >
           {this.renderTabIcons(tabIcons, tabKeys)}
         </View>
@@ -57,12 +67,15 @@ export default class TabCardStack extends React.Component {
   }
 }
 
-TabCardStack.propTypes = {
-  navigationState: PropTypes.object.isRequired,
+NavigationCardTab.propTypes = {
+  navigationState: PropTypes.shape({
+    index: PropTypes.number,
+  }).isRequired,
   navStateName: PropTypes.string.isRequired,
   renderScene: PropTypes.func.isRequired,
   getTabProps: PropTypes.func.isRequired,
   getTabSelectionHandlers: PropTypes.func.isRequired,
+  tabBarStyle: View.propTypes.style,
 };
 
-TabCardStack.defaultProps = {};
+NavigationCardTab.defaultProps = {};

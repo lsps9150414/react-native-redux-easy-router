@@ -12,9 +12,9 @@ export default class TabIcon extends React.Component {
   }
   render() {
     const themeColor = this.props.selected ? 'red' : 'gray';
-    const TabIconView = this.props.tabIcon;
-    const defaultIcon = TabIconView ? (
-      <TabIconView tabKey={this.props.tabKey} selected={this.props.selected} />
+    const CustomTabIcon = this.props.tabIcon;
+    const defaultIcon = CustomTabIcon ? (
+      <CustomTabIcon tabKey={this.props.tabKey} selected={this.props.selected} />
     ) : (
       <Text style={{ color: themeColor, fontSize: 12 }}>
         {`Tab ${this.props.tabIndex + 1}`}
@@ -29,7 +29,7 @@ export default class TabIcon extends React.Component {
           justifyContent: 'center',
         }}
       >
-      {defaultIcon}
+        {defaultIcon}
       </TouchableOpacity>
     );
   }
