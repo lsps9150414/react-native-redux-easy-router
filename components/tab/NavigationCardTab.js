@@ -8,14 +8,10 @@ import {
 
 const styles = StyleSheet.create({
   tabBar: {
-    position: 'absolute',
     flexDirection: 'row',
     backgroundColor: 'white',
-    borderTopWidth: 0.5,
+    borderTopWidth: StyleSheet.hairlineWidth,
     borderColor: 'gray',
-    bottom: 0,
-    left: 0,
-    right: 0,
     height: 60,
   },
 });
