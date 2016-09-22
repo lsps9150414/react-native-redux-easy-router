@@ -15,6 +15,7 @@ export const routerPropTypes = {
 
 export const stackRouterPropTypes = {
   ...basicRouterPropTypes,
+  direction: PropTypes.oneOf(['vertical', 'horizontal']),
   navBarStyle: View.propTypes.style,
   titleStyle: Text.propTypes.style,
   // TODO: side element styles

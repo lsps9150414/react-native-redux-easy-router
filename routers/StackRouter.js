@@ -162,7 +162,6 @@ class StackRouter extends React.Component {
 StackRouter.propTypes = {
   ...stackRouterPropTypes,
   ...routingTargetPropTypes,
-  direction: PropTypes.oneOf(['vertical', 'horizontal']),
 };
 
 StackRouter.defaultProps = {
