@@ -3,75 +3,40 @@ import React, {
 } from 'react';
 import {
   View,
-  StyleSheet,
 } from 'react-native';
 
-const styles = StyleSheet.create({
-  tabBar: {
-    flexDirection: 'row',
-    backgroundColor: 'white',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderColor: 'gray',
-    height: 60,
-  },
-});
-
-import TabIcon from './TabIcon';
-import { navigate } from '../../actions';
-
 export default class NavigationCardTab extends React.Component {
-  handleTabSelection = tabIndex => {
-    const focusSelectedTab = () => {
-      navigate.selectTab(this.props.navStateName, tabIndex);
-    };
-    const tabSelectionHandlers = this.props.getTabSelectionHandlers();
-    if (tabSelectionHandlers[tabIndex]) {
-      tabSelectionHandlers[tabIndex](focusSelectedTab);
-    } else {
-      focusSelectedTab();
-    }
-  }
-  renderTabIcons = (tabIcons, tabKeys) => (
-    tabIcons.map((tabIcon, index) => (
-      <TabIcon
-        key={`TABS_${index}`}
-        tabIndex={index}
-        tabKey={tabKeys[index]}
-        selected={this.props.navigationState.index === index}
-        tabIcon={tabIcon}
-        onPress={this.handleTabSelection}
-      />
-    ))
-  )
   render() {
-    const tabProps = this.props.getTabProps();
-    const tabIcons = tabProps.map(tab => tab.tabIcon);
-    const tabKeys = tabProps.map(tab => tab.tabKey);
     return (
       <View style={{ flex: 1 }}>
         {this.props.renderScene(this.props.navigationState)}
-        <View
-          style={[
-            styles.tabBar,
-            this.props.tabBarStyle,
-          ]}
-        >
-          {this.renderTabIcons(tabIcons, tabKeys)}
-        </View>
+        {this.props.renderTabBar(
+          this.props.tabProps,
+          this.props.navStateName,
+          this.props.navigationState,
+          this.props.tabSelectionHandlers
+        )}
       </View>
     );
   }
 }
 
 NavigationCardTab.propTypes = {
+  navStateName: PropTypes.string.isRequired,
   navigationState: PropTypes.shape({
     index: PropTypes.number,
   }).isRequired,
-  navStateName: PropTypes.string.isRequired,
+  tabProps: PropTypes.arrayOf(
+    PropTypes.shape({
+      tabKey: PropTypes.string,
+      tabIcon: PropTypes.func,
+    })
+  ).isRequired,
   renderScene: PropTypes.func.isRequired,
-  getTabProps: PropTypes.func.isRequired,
-  getTabSelectionHandlers: PropTypes.func.isRequired,
-  tabBarStyle: View.propTypes.style,
+  renderTabBar: PropTypes.func.isRequired,
+  tabSelectionHandlers: PropTypes.arrayOf(
+    PropTypes.func,
+  ).isRequired,
 };
 
 NavigationCardTab.defaultProps = {};

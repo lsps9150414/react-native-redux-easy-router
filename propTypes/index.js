@@ -3,8 +3,6 @@ import { View, Text } from 'react-native';
 
 const basicRouterPropTypes = {
   children: PropTypes.node.isRequired,
-  hideNavBar: PropTypes.bool,
-  hideTabBar: PropTypes.bool,
 };
 
 export const routerPropTypes = {
@@ -15,14 +13,16 @@ export const routerPropTypes = {
 
 export const stackRouterPropTypes = {
   ...basicRouterPropTypes,
+  hideNavBar: PropTypes.bool,
   direction: PropTypes.oneOf(['vertical', 'horizontal']),
   navBarStyle: View.propTypes.style,
   titleStyle: Text.propTypes.style,
-  // TODO: side element styles
+  // TODO: navBar side element styles
 };
 
 export const tabRouterPropTypes = {
   ...basicRouterPropTypes,
+  hideTabBar: PropTypes.bool,
   tabBarStyle: View.propTypes.style,
 };
 
@@ -37,7 +37,9 @@ export const routingTargetPropTypes = {
 
   // For StackRouter
   hideParentNavBar: PropTypes.bool,
-  // TODO: navBarStyle: View.propTypes.style,
+  hideParentTabBar: PropTypes.bool,
+  // TODO: ParentNavBarStyle: View.propTypes.style,
+  // TODO: ParentNabBarStyle: View.propTypes.style,
 
   title: PropTypes.string,
   titleStyle: Text.propTypes.style,

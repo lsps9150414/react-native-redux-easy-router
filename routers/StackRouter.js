@@ -94,6 +94,7 @@ class StackRouter extends React.Component {
   }
 
   renderHeader = sceneProps => {
+    // FIXME: NavBar update before scene causing glitter.
     const routingTargetCarrier = this.getRoutingTargetCarrier(sceneProps.scene.key);
     if (!routingTargetCarrier) {
       return (
@@ -106,7 +107,6 @@ class StackRouter extends React.Component {
       );
     }
     if (this.props.hideNavBar) { return null; }
-    // FIXME: NavBar update before scene causing glitter.
     if (routingTargetCarrier.props.hideParentNavBar) { return null; }
 
     const renderTitleComponent =

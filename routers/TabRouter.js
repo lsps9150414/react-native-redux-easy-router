@@ -4,21 +4,26 @@ import React, {
 import { connect } from 'react-redux';
 
 import NavigationCardTab from '../components/tab/NavigationCardTab';
+import TabBar from '../components/tab/TabBar';
 import { tabRouterPropTypes, routingTargetPropTypes } from '../propTypes';
 
 class TabRouter extends React.Component {
+  componentWillMount() {
+    this.tabProps = this.getTabProps();
+    this.tabSelectionHandlers = this.getTabSelectionHandlers();
+  }
   getTabProps = () => {
     if (Array.isArray(this.props.children)) {
       return (
         this.props.children.map(child => ({
-          tabIcon: child.props.tabIcon || false,
           tabKey: child.props.routeKey,
+          tabIcon: child.props.tabIcon || false,
         }))
       );
     } else if (this.props.children) {
       return [{
-        tabIcon: this.props.children.props.tabIcon || false,
         tabKey: this.props.children.props.routeKey,
+        tabIcon: this.props.children.props.tabIcon || false,
       }];
     }
     return [];
@@ -50,16 +55,29 @@ class TabRouter extends React.Component {
     }
     return (<Component {...propsToPass} />);
   }
-
+  renderTabBar = (tabProps, navStateName, navigationState, tabSelectionHandlers) => {
+    const routingTargetCarrier = this.getRoutingTargetCarrier(navigationState.index);
+    if (this.props.hideTabBar) { return null; }
+    if (routingTargetCarrier.props.hideParentTabBar) { return null; }
+    return (
+      <TabBar
+        style={this.props.tabBarStyle}
+        tabProps={tabProps}
+        navStateName={navStateName}
+        navigationState={navigationState}
+        tabSelectionHandlers={tabSelectionHandlers}
+      />
+    );
+  }
   render() {
     return (
       <NavigationCardTab
         navStateName={this.props.navStateName}
         navigationState={this.props.navigationState}
+        tabProps={this.tabProps}
+        tabSelectionHandlers={this.tabSelectionHandlers}
         renderScene={this.renderScene}
-        getTabProps={this.getTabProps}
-        getTabSelectionHandlers={this.getTabSelectionHandlers}
-        tabBarStyle={this.props.tabBarStyle}
+        renderTabBar={this.renderTabBar}
       />
     );
   }
