@@ -14,15 +14,12 @@ export const createNavigationReducer = initialState => handleActions(
       ...state,
       [action.targetRouterKey]: StateUtils.pop(state[action.targetRouterKey]),
     }),
-    [NAVIGATION_ACTIONS.PUSH]: (state, action) => {
-      console.log(StateUtils.has(state[action.targetRouterKey], action.route.key));
-      return ({
-        ...state,
-        [action.targetRouterKey]: StateUtils.has(state[action.targetRouterKey], action.route.key) ?
-          state[action.targetRouterKey] :
-            StateUtils.push(state[action.targetRouterKey], action.route),
-      });
-    },
+    [NAVIGATION_ACTIONS.PUSH]: (state, action) => ({
+      ...state,
+      [action.targetRouterKey]: StateUtils.has(state[action.targetRouterKey], action.route.key) ?
+        state[action.targetRouterKey] :
+          StateUtils.push(state[action.targetRouterKey], action.route),
+    }),
     [NAVIGATION_ACTIONS.REPLACE]: (state, action) => ({
       ...state,
       [action.targetRouterKey]: StateUtils.replaceAt(
