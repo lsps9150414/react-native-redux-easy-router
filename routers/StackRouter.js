@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   NavigationExperimental,
+  BackAndroid,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { navigate } from '../actions';
@@ -18,6 +19,12 @@ const {
 } = NavigationExperimental;
 
 class StackRouter extends React.Component {
+  componentWillMount() {
+    BackAndroid.addEventListener('hardwareBackPress', this.back);
+  }
+  componentWillUnmount() {
+    BackAndroid.removeEventListener('hardwareBackPress', this.back);
+  }
   getRoutingTargetCarrier = routingTargetKey => {
     if (Array.isArray(this.props.children)) {
       return (
@@ -31,7 +38,11 @@ class StackRouter extends React.Component {
   }
 
   back = () => {
-    navigate.pop(this.props.navStateName);
+    if (this.props.navigationState.routes.length !== 1) {
+      navigate.pop(this.props.navStateName);
+      return true;
+    }
+    return false;
   }
 
   renderSideComponent = (side, sceneCarrierProps) => {

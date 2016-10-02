@@ -12,7 +12,7 @@ export const routerPropTypes = {
 };
 
 export const stackRouterPropTypes = {
-  ...basicRouterPropTypes,
+  ...routerPropTypes,
   hideNavBar: PropTypes.bool,
   direction: PropTypes.oneOf(['vertical', 'horizontal']),
   navBarStyle: View.propTypes.style,
@@ -21,7 +21,7 @@ export const stackRouterPropTypes = {
 };
 
 export const tabRouterPropTypes = {
-  ...basicRouterPropTypes,
+  ...routerPropTypes,
   hideTabBar: PropTypes.bool,
   tabBarStyle: View.propTypes.style,
 };
