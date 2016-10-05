@@ -15,7 +15,7 @@ class TabRouter extends React.Component {
   getTabProps = () => {
     if (Array.isArray(this.props.children)) {
       return (
-        this.props.children.map(child => ({
+        React.Children.map(this.props.children, child => ({
           tabKey: child.props.routeKey,
           tabIcon: child.props.tabIcon || false,
         }))
@@ -30,7 +30,9 @@ class TabRouter extends React.Component {
   }
   getTabSelectionHandlers = () => {
     if (Array.isArray(this.props.children)) {
-      return this.props.children.map(child => (child.props.handleTabSelection || null));
+      return (
+        React.Children.map(this.props.children, child => (child.props.handleTabSelection || null))
+      );
     }
     return [this.props.children.props.handleTabSelection || null];
   }
