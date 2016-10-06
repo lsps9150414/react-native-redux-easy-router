@@ -8,7 +8,7 @@ import { switchRouterPropTypes, routingTargetPropTypes } from '../propTypes';
 
 class Switch extends React.Component {
   getSwitchingTargetCarrier = switchingKey => {
-    if (Array.isArray(this.props.children)) {
+    if (React.Children.count(this.props.children) !== 1) {
       return this.props.children.find(child => switchingKey === child.props.routeKey);
     }
     return switchingKey === this.props.children.props.routeKey ? this.props.children : null;

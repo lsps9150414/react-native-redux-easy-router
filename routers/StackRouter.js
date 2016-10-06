@@ -26,7 +26,7 @@ class StackRouter extends React.Component {
     BackAndroid.removeEventListener('hardwareBackPress', this.back);
   }
   getRoutingTargetCarrier = routingTargetKey => {
-    if (Array.isArray(this.props.children)) {
+    if (React.Children.count(this.props.children) !== 1) {
       return (
         this.props.children.find(child => routingTargetKey === `scene_${child.props.routeKey}`)
       );

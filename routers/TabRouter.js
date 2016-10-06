@@ -13,7 +13,7 @@ class TabRouter extends React.Component {
     this.tabSelectionHandlers = this.getTabSelectionHandlers();
   }
   getTabProps = () => {
-    if (Array.isArray(this.props.children)) {
+    if (React.Children.count(this.props.children) !== 1) {
       return (
         React.Children.map(this.props.children, child => ({
           tabKey: child.props.routeKey,
@@ -29,7 +29,7 @@ class TabRouter extends React.Component {
     return [];
   }
   getTabSelectionHandlers = () => {
-    if (Array.isArray(this.props.children)) {
+    if (React.Children.count(this.props.children) !== 1) {
       return (
         React.Children.map(this.props.children, child => (child.props.handleTabSelection || null))
       );
@@ -38,7 +38,7 @@ class TabRouter extends React.Component {
   }
 
   getRoutingTargetCarrier = routingTargetIndex => {
-    if (Array.isArray(this.props.children)) {
+    if (React.Children.count(this.props.children) !== 1) {
       return this.props.children[routingTargetIndex];
     }
     return this.props.children;
