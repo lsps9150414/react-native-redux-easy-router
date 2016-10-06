@@ -47,7 +47,7 @@ export default class MainRouter extends React.Component {
       // The `routeKey` should be 'ROOT' for the root <Router />.
       // the `navStateName` should match the key of your navigation state.
       <Router routeKey={'ROOT'} component={StackRouter} navStateName={'MAIN_ROUTER'}>
-        
+
         // The `routeKey` should match the key of the init routes of your navigation state.
         <Scene routeKey={'SPLASH_SCREEN'} component={SplashScreen} />
         <Scene routeKey={'HOME'} component={Home} />
@@ -127,7 +127,7 @@ navigate.push('MAIN_ROUTER', { key: 'HOME' });
 
 ### Navigation Reducer Creator
 `createNavigationReducer()` has the following signature: `(initNavState) => redux reducer`
- 
+
 The navigation reducer creator takes in an inital navigation state and **returns a regular redux reducer that manage the changes of the navigation state**.
 
 **The initial navigation state should have the following structure:**
@@ -233,6 +233,7 @@ Router that is similar to StackRouter but render scenes base on the `switchingKe
 - `navigate.selectTab()`
 
 ## Roadmap
-- [ ] Customizable navBar/TabBar styles
+- [x] Customizable navBar/TabBar styles
 - [ ] Provide option to control whether to keep tab scenes mounted when not focused
-- [ ] Hide TabBar by giving `<Scene>` a control prop
+- [x] Hide TabBar by giving a control prop
+- [ ] [Android] Double press back button to quit 
