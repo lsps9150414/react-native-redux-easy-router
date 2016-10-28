@@ -1,6 +1,6 @@
 {
   "name": "react-native-redux-easy-router",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "React Native Router based on new React Native Navigation API and Redux",
   "main": "index.js",
   "scripts": {
@@ -20,6 +20,7 @@
   "author": "lsps9150414 <philipchen.alive@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "redux": "^3.6.0",
     "react-redux": "^4.4.5",
     "redux-actions": "^0.12.0"
   },
@@ -31,7 +32,6 @@
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.3.0",
     "react": "^15.3.2",
-    "react-native": "^0.33.0",
-    "redux": "^3.6.0"
+    "react-native": "^0.33.0"
   }
 }
