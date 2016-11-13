@@ -1,11 +1,9 @@
-import React, {
-  // PropTypes,
-} from 'react';
-import { connect } from 'react-redux';
+import { routingTargetPropTypes, tabRouterPropTypes } from '../propTypes';
 
 import NavigationCardTab from '../components/tab/NavigationCardTab';
+import React from 'react';
 import TabBar from '../components/tab/TabBar';
-import { tabRouterPropTypes, routingTargetPropTypes } from '../propTypes';
+import { connect } from 'react-redux';
 
 class TabRouter extends React.Component {
   componentWillMount() {
@@ -37,14 +35,14 @@ class TabRouter extends React.Component {
     return [this.props.children.props.handleTabSelection || null];
   }
 
-  getRoutingTargetCarrier = routingTargetIndex => {
+  getRoutingTargetCarrier = (routingTargetIndex) => {
     if (React.Children.count(this.props.children) !== 1) {
       return this.props.children[routingTargetIndex];
     }
     return this.props.children;
   }
 
-  renderScene = navigationState => {
+  renderScene = (navigationState) => {
     const routingTargetCarrier = this.getRoutingTargetCarrier(navigationState.index);
     const propsToPass = {
       ...routingTargetCarrier.props,
@@ -96,7 +94,7 @@ const mapStateToProps = (state, props) => ({
   navigationState: state.navigation[props.navStateName],
 });
 
-const mapDispatchToProps = (/*dispatch*/) => ({
+const mapDispatchToProps = (/* dispatch */) => ({
 });
 
 const TabRouterContainer = connect(

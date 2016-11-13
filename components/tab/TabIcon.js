@@ -39,10 +39,7 @@ TabIcon.propTypes = {
   tabIndex: PropTypes.number.isRequired,
   tabKey: PropTypes.string.isRequired,
   selected: PropTypes.bool.isRequired,
-  tabIcon: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.bool,
-  ]).isRequired,
+  tabIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]).isRequired,
   onPress: PropTypes.func.isRequired,
 };
 
