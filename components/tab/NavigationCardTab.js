@@ -1,9 +1,11 @@
 import React, {
   PropTypes,
 } from 'react';
+
 import {
   View,
 } from 'react-native';
+import { tabBarPropTypes } from '../../propTypes/tab';
 
 export default class NavigationCardTab extends React.Component {
   render() {
@@ -22,21 +24,9 @@ export default class NavigationCardTab extends React.Component {
 }
 
 NavigationCardTab.propTypes = {
-  navStateName: PropTypes.string.isRequired,
-  navigationState: PropTypes.shape({
-    index: PropTypes.number,
-  }).isRequired,
-  tabProps: PropTypes.arrayOf(
-    PropTypes.shape({
-      tabKey: PropTypes.string,
-      tabIcon: PropTypes.func,
-    })
-  ).isRequired,
+  ...tabBarPropTypes,
   renderScene: PropTypes.func.isRequired,
   renderTabBar: PropTypes.func.isRequired,
-  tabSelectionHandlers: PropTypes.arrayOf(
-    PropTypes.func,
-  ).isRequired,
 };
 
 NavigationCardTab.defaultProps = {};

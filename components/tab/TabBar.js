@@ -2,12 +2,13 @@ import React, {
   PropTypes,
 } from 'react';
 import {
-  View,
   StyleSheet,
+  View,
 } from 'react-native';
 
 import TabIcon from './TabIcon';
 import { navigate } from '../../actions';
+import { tabBarPropTypes } from '../../propTypes/tab';
 
 const styles = StyleSheet.create({
   tabBar: {
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
 });
 
 export default class TabBar extends React.Component {
-  handleTabSelection = tabIndex => {
+  handleTabSelection = (tabIndex) => {
     const focusSelectedTab = () => {
       navigate.selectTab(this.props.navStateName, tabIndex);
     };
@@ -57,19 +58,7 @@ export default class TabBar extends React.Component {
 }
 
 TabBar.propTypes = {
-  navStateName: PropTypes.string.isRequired,
-  navigationState: PropTypes.shape({
-    index: PropTypes.number,
-  }).isRequired,
-  tabProps: PropTypes.arrayOf(
-    PropTypes.shape({
-      tabKey: PropTypes.string,
-      tabIcon: PropTypes.func,
-    })
-  ).isRequired,
-  tabSelectionHandlers: PropTypes.arrayOf(
-    PropTypes.func,
-  ).isRequired,
+  ...tabBarPropTypes,
   style: View.propTypes.style,
 };
 
