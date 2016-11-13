@@ -234,6 +234,7 @@ Router that is similar to StackRouter but render scenes base on the `switchingKe
 
 ## Roadmap
 - [x] Customizable navBar/TabBar styles
-- [ ] Provide option to control whether to keep tab scenes mounted when not focused
 - [x] Hide TabBar by giving a control prop
-- [ ] [Android] Double press back button to quit 
+- [ ] Provide option to control whether to keep tab scenes mounted when not focused
+- [ ] Support getting navBar button onPress handler from scenes
+- [ ] [Android] Double press back button to quit app
