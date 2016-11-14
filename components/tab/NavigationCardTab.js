@@ -11,7 +11,9 @@ export default class NavigationCardTab extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        {this.props.renderScene(this.props.navigationState)}
+        <View style={{ flex: 1 }}>
+          {this.props.renderScene(this.props.navigationState)}
+        </View>
         {this.props.renderTabBar(
           this.props.tabProps,
           this.props.navStateName,
