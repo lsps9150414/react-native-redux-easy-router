@@ -226,11 +226,11 @@ Router that manages tab scenes. Renders scenes base on the navState.
 Router that is similar to StackRouter but render scenes base on the `switchingKey` prop instead of navState
 
 ### Navigation Methods
-- `navigate.push()`
-- `navigate.pop()`
-- `navigate.replace()`
-- `navigate.reset()`
-- `navigate.selectTab()`
+- `navigate.push(targetRouterKey, newRoute)`
+- `navigate.pop(targetRouterKey)`
+- `navigate.replace(targetRouterKey, newRoute, RouteKeyToReplace)`
+- `navigate.reset(targetRouterKey)`
+- `navigate.selectTab(targetRouterKey)`
 
 ## Roadmap
 - [x] Customizable navBar/TabBar styles
