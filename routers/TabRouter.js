@@ -29,10 +29,12 @@ class TabRouter extends React.Component {
   getTabSelectionHandlers = () => {
     if (React.Children.count(this.props.children) !== 1) {
       return (
-        React.Children.map(this.props.children, child => (child.props.handleTabSelection || null))
+        React.Children.map(
+          this.props.children, child => (child.props.handleTabSelection || false)
+        )
       );
     }
-    return [this.props.children.props.handleTabSelection || null];
+    return [this.props.children.props.handleTabSelection || false];
   }
 
   getRoutingTargetCarrier = (routingTargetIndex) => {

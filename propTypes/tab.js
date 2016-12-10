@@ -12,6 +12,6 @@ export const tabBarPropTypes = {
     })
   ).isRequired,
   tabSelectionHandlers: PropTypes.arrayOf(
-    PropTypes.func,
+    PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
   ).isRequired,
 };
