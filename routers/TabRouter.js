@@ -1,9 +1,9 @@
-import { routingTargetPropTypes, tabRouterPropTypes } from '../propTypes';
+import React from 'react';
+import { connect } from 'react-redux';
 
 import NavigationCardTab from '../components/tab/NavigationCardTab';
-import React from 'react';
 import TabBar from '../components/tab/TabBar';
-import { connect } from 'react-redux';
+import { routingTargetPropTypes, tabRouterPropTypes } from '../propTypes';
 
 class TabRouter extends React.Component {
   componentWillMount() {

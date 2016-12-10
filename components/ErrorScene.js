@@ -1,10 +1,9 @@
 import React, {
   PropTypes,
 } from 'react';
-
 import {
-  View,
   Text,
+  View,
 } from 'react-native';
 
 export default class ErrorScene extends React.Component {

@@ -1,10 +1,10 @@
 import React, {
   PropTypes,
 } from 'react';
-
 import {
   View,
 } from 'react-native';
+
 import { tabBarPropTypes } from '../../propTypes/tab';
 
 export default class NavigationCardTab extends React.Component {

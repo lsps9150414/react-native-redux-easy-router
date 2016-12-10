@@ -2,16 +2,16 @@ import React, {
   PropTypes,
 } from 'react';
 import {
-  View,
-  TouchableOpacity,
-  NavigationExperimental,
   BackAndroid,
+  NavigationExperimental,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { navigate } from '../actions';
 
 import ErrorScene from '../components/ErrorScene';
-import { stackRouterPropTypes, routingTargetPropTypes } from '../propTypes';
+import { navigate } from '../actions';
+import { routingTargetPropTypes, stackRouterPropTypes } from '../propTypes';
 
 const {
   CardStack: NavigationCardStack,
@@ -25,7 +25,7 @@ class StackRouter extends React.Component {
   componentWillUnmount() {
     BackAndroid.removeEventListener('hardwareBackPress', this.back);
   }
-  getRoutingTargetCarrier = routingTargetKey => {
+  getRoutingTargetCarrier = (routingTargetKey) => {
     if (React.Children.count(this.props.children) !== 1) {
       return (
         this.props.children.find(child => routingTargetKey === `scene_${child.props.routeKey}`)
@@ -104,7 +104,7 @@ class StackRouter extends React.Component {
     );
   }
 
-  renderHeader = sceneProps => {
+  renderHeader = (sceneProps) => {
     // FIXME: NavBar update before scene causing glitter.
     const routingTargetCarrier = this.getRoutingTargetCarrier(sceneProps.scene.key);
     if (!routingTargetCarrier) {
@@ -139,7 +139,7 @@ class StackRouter extends React.Component {
     );
   }
 
-  renderScene = sceneProps => {
+  renderScene = (sceneProps) => {
     const sceneKey = sceneProps.scene.key;
     const routingTargetCarrier = this.getRoutingTargetCarrier(sceneKey);
     if (!routingTargetCarrier) {
