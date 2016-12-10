@@ -7,14 +7,14 @@ import ErrorScene from '../components/ErrorScene';
 import { routingTargetPropTypes, switchRouterPropTypes } from '../propTypes';
 
 class Switch extends React.Component {
-  getSwitchingTargetCarrier = switchingKey => {
+  getSwitchingTargetCarrier = (switchingKey) => {
     if (React.Children.count(this.props.children) !== 1) {
       return this.props.children.find(child => switchingKey === child.props.routeKey);
     }
     return switchingKey === this.props.children.props.routeKey ? this.props.children : null;
   }
 
-  renderSwitchingTarget = switchingKey => {
+  renderSwitchingTarget = (switchingKey) => {
     const switchingTargetCarrier = this.getSwitchingTargetCarrier(switchingKey);
     if (!switchingTargetCarrier) {
       return (<ErrorScene sceneKey={switchingKey} />);
@@ -43,10 +43,10 @@ Switch.propTypes = {
 
 Switch.defaultProps = {};
 
-const mapStateToProps = (/*state, props*/) => ({
+const mapStateToProps = (/* state, props */) => ({
 });
 
-const mapDispatchToProps = (/*dispatch*/) => ({
+const mapDispatchToProps = (/* dispatch */) => ({
 });
 
 const SwitchContainer = connect(
