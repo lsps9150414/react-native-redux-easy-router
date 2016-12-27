@@ -228,9 +228,9 @@ Router that is similar to StackRouter but render scenes base on the `switchingKe
 ### Navigation Methods
 - `navigate.push(targetRouterKey, newRoute)`
 - `navigate.pop(targetRouterKey)`
-- `navigate.replace(targetRouterKey, newRoute, RouteKeyToReplace)`
+- `navigate.replace(targetRouterKey, newRoute, routeKey)`
 - `navigate.reset(targetRouterKey)`
-- `navigate.selectTab(targetRouterKey)`
+- `navigate.selectTab(targetRouterKey, routeKey)`
 
 ## Roadmap
 - [x] Customizable navBar/TabBar styles
