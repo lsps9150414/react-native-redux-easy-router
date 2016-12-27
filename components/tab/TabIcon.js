@@ -8,7 +8,7 @@ import {
 
 export default class TabIcon extends React.Component {
   handleOnPress = () => {
-    this.props.onPress(this.props.tabIndex);
+    this.props.onPress(this.props.tabKey);
   }
   render() {
     const themeColor = this.props.selected ? 'red' : 'gray';
@@ -17,7 +17,7 @@ export default class TabIcon extends React.Component {
       <CustomTabIcon tabKey={this.props.tabKey} selected={this.props.selected} />
     ) : (
       <Text style={{ color: themeColor, fontSize: 12 }}>
-        {`Tab ${this.props.tabIndex + 1}`}
+        {`Tab ${this.props.tabKey}`}
       </Text>
     );
     return (
@@ -36,7 +36,7 @@ export default class TabIcon extends React.Component {
 }
 
 TabIcon.propTypes = {
-  tabIndex: PropTypes.number.isRequired,
+  // tabIndex: PropTypes.number.isRequired,
   tabKey: PropTypes.string.isRequired,
   selected: PropTypes.bool.isRequired,
   tabIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]).isRequired,

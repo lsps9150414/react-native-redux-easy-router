@@ -11,7 +11,7 @@ export const tabBarPropTypes = {
       tabIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
     })
   ).isRequired,
-  tabSelectionHandlers: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
-  ).isRequired,
+  tabSelectionHandlers: PropTypes.shape({
+    routeKey: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+  }).isRequired,
 };

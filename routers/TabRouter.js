@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import ErrorScene from '../components/ErrorScene';
 import NavigationCardTab from '../components/tab/NavigationCardTab';
 import TabBar from '../components/tab/TabBar';
 import { routingTargetPropTypes, tabRouterPropTypes } from '../propTypes';
@@ -11,9 +12,11 @@ class TabRouter extends React.Component {
     this.tabSelectionHandlers = this.getTabSelectionHandlers();
   }
   getTabProps = () => {
-    if (React.Children.count(this.props.children) !== 1) {
+    if (React.Children.count(this.props.children) >= 1) {
+      const childCarriers = this.props.children.filter(child => React.isValidElement(child));
+      console.log(childCarriers);
       return (
-        React.Children.map(this.props.children, child => ({
+        React.Children.map(childCarriers, child => ({
           tabKey: child.props.routeKey,
           tabIcon: child.props.tabIcon || false,
         }))
@@ -27,25 +30,36 @@ class TabRouter extends React.Component {
     return [];
   }
   getTabSelectionHandlers = () => {
-    if (React.Children.count(this.props.children) !== 1) {
-      return (
-        React.Children.map(
-          this.props.children, child => (child.props.handleTabSelection || false)
-        )
-      );
+    const childCarriers = this.props.children.filter(child => React.isValidElement(child));
+    console.log('getTabSelectionHandlers =', childCarriers);
+    if (React.Children.count(childCarriers) >= 1) {
+      const tabSelectionHandlersDictionary = {};
+      React.Children.forEach(childCarriers, (child) => {
+        tabSelectionHandlersDictionary[child.props.routeKey] =
+          (child.props.handleTabSelection || false);
+      });
+      return tabSelectionHandlersDictionary;
     }
     return [this.props.children.props.handleTabSelection || false];
   }
 
-  getRoutingTargetCarrier = (routingTargetIndex) => {
-    if (React.Children.count(this.props.children) !== 1) {
-      return this.props.children[routingTargetIndex];
+  getRoutingTargetCarrier = (routingTargetKey) => {
+    if (React.Children.count(this.props.children) >= 1) {
+      return this.props.children.find(
+        child => React.isValidElement(child) && (child.props.routeKey === routingTargetKey)
+      );
     }
-    return this.props.children;
+    if (React.isValidElement(this.props.children)) {
+      return this.props.children;
+    }
+    return false;
   }
 
   renderScene = (navigationState) => {
-    const routingTargetCarrier = this.getRoutingTargetCarrier(navigationState.index);
+    const routingTargetCarrier = this.getRoutingTargetCarrier(navigationState.key);
+    if (!routingTargetCarrier) {
+      return (<ErrorScene sceneKey={navigationState.key} />);
+    }
     const propsToPass = {
       ...routingTargetCarrier.props,
     };
@@ -58,7 +72,7 @@ class TabRouter extends React.Component {
     return (<Component {...propsToPass} />);
   }
   renderTabBar = (tabProps, navStateName, navigationState, tabSelectionHandlers) => {
-    const routingTargetCarrier = this.getRoutingTargetCarrier(navigationState.index);
+    const routingTargetCarrier = this.getRoutingTargetCarrier(navigationState.key);
     if (this.props.hideTabBar) { return null; }
     if (routingTargetCarrier.props.hideParentTabBar) { return null; }
     return (

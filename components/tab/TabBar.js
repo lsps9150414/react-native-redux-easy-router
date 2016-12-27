@@ -21,12 +21,13 @@ const styles = StyleSheet.create({
 });
 
 export default class TabBar extends React.Component {
-  handleTabSelection = (tabIndex) => {
+  // TODO: tabIndex => tabKey
+  handleTabSelection = (tabKey) => {
     const focusSelectedTab = () => {
-      navigate.selectTab(this.props.navStateName, tabIndex);
+      navigate.selectTab(this.props.navStateName, tabKey);
     };
-    if (this.props.tabSelectionHandlers[tabIndex]) {
-      this.props.tabSelectionHandlers[tabIndex](focusSelectedTab);
+    if (this.props.tabSelectionHandlers[tabKey]) {
+      this.props.tabSelectionHandlers[tabKey](focusSelectedTab);
     } else {
       focusSelectedTab();
     }
@@ -35,9 +36,8 @@ export default class TabBar extends React.Component {
     tabProps.map((tab, index) => (
       <TabIcon
         key={`TABS_${index}`}
-        tabIndex={index}
         tabKey={tabProps[index].tabKey}
-        selected={this.props.navigationState.index === index}
+        selected={this.props.navigationState.key === tabProps[index].tabKey}
         tabIcon={tabProps[index].tabIcon}
         onPress={this.handleTabSelection}
       />

@@ -1,6 +1,7 @@
-import { NAVIGATION_ACTIONS } from '../actions';
 import { NavigationExperimental } from 'react-native';
 import { handleActions } from 'redux-actions';
+
+import { NAVIGATION_ACTIONS } from '../actions';
 
 const { StateUtils } = NavigationExperimental;
 
@@ -30,7 +31,7 @@ export const createNavigationReducer = initialState => handleActions(
     }),
     [NAVIGATION_ACTIONS.SELECT_TAB]: (state, action) => ({
       ...state,
-      [action.targetRouterKey]: { ...state[action.targetRouterKey], index: action.index },
+      [action.targetRouterKey]: { ...state[action.targetRouterKey], key: action.key },
     }),
   },
   initialState

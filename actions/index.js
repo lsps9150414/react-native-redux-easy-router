@@ -35,9 +35,9 @@ export const navigate = {
   replace: (targetRouterKey, route, key) => {
     reduxStore.dispatch(handleNavigation(NAVIGATION_ACTIONS.REPLACE, targetRouterKey, route, key));
   },
-  selectTab: (targetRouterKey, index) => {
+  selectTab: (targetRouterKey, key) => {
     reduxStore.dispatch(handleNavigation(
-      NAVIGATION_ACTIONS.SELECT_TAB, targetRouterKey, null, null, index
+      NAVIGATION_ACTIONS.SELECT_TAB, targetRouterKey, null, key
     ));
   },
 };
