@@ -31,6 +31,18 @@ const initialState = {
 
 export default createNavigationReducer(initialState);
 ```
+##### The `route` object
+A `route` is the virtual representation of a `scene`(the view) inside the `router`.
+
+`route` objects have the structure:
+```javascript
+{
+  key: 'KEY', // The routKey of the scene
+  title: 'Title', // The title of the scene to display on the navBar
+  props: { props to pass to the next scene },
+}
+```
+
 The `createNavigationReducer()` returns a regular redux reducer that manage the changes of the navigation state. Provide the returned reducer to your redux store as usual.
 
 #### 2. Define the navigation structure of your app.
@@ -226,11 +238,27 @@ Router that manages tab scenes. Renders scenes base on the navState.
 Router that is similar to StackRouter but render scenes base on the `switchingKey` prop instead of navState
 
 ### Navigation Methods
+`targetRouterKey` is the key of the router you want to manipulate.
+`newRoute` is the route object.
+
 - `navigate.push(targetRouterKey, newRoute)`
 - `navigate.pop(targetRouterKey)`
 - `navigate.replace(targetRouterKey, newRoute, routeKey)`
 - `navigate.reset(targetRouterKey)`
 - `navigate.selectTab(targetRouterKey, routeKey)`
+
+#### Passing props via navigation:
+`newRoute`
+```javascript
+navigate.push(
+  targetRouterKey,
+  {
+    key: 'KEY',
+    title: 'Title',
+    props: { props to pass to the next scene },
+  }
+)
+```
 
 ## Roadmap
 - [x] Customizable navBar/TabBar styles
