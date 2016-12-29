@@ -14,7 +14,6 @@ class TabRouter extends React.Component {
   getTabProps = () => {
     if (React.Children.count(this.props.children) >= 1) {
       const childCarriers = this.props.children.filter(child => React.isValidElement(child));
-      console.log(childCarriers);
       return (
         React.Children.map(childCarriers, child => ({
           tabKey: child.props.routeKey,
@@ -31,7 +30,6 @@ class TabRouter extends React.Component {
   }
   getTabSelectionHandlers = () => {
     const childCarriers = this.props.children.filter(child => React.isValidElement(child));
-    console.log('getTabSelectionHandlers =', childCarriers);
     if (React.Children.count(childCarriers) >= 1) {
       const tabSelectionHandlersDictionary = {};
       React.Children.forEach(childCarriers, (child) => {
